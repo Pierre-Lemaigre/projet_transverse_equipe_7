@@ -15,37 +15,50 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: Center(child: HomePage(onPressed: () => true,)),
+          body: HomePage(),
         ));
   }
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key, required this.onPressed}) : super(key: key);
-  final VoidCallback onPressed;
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Hello World!'),
-        ElevatedButton(
-          onPressed: () => onPressed.call(),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Hello World!'),
+          ElevatedButton(
+            key: Key('button_today'),
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                primary: Colors.blue
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.wb_sunny,
+                  key: Key('icon_weather'),
+                ),
+                Text('Weather today')
+              ],
+            ),
           ),
-          child: Row(
-            children: [
-              Icon(
-                Icons.wb_sunny,
-                key: Key('icon_weather'),
-              ),
-              Text('Weather today'),
-            ],
+          ElevatedButton(
+            key: Key('button_tomorrow'),
+            onPressed: () {},
+            child: Row(
+              children: [
+                Icon(
+                  Icons.wb_cloudy,
+                  key: Key('icon_weather_2'),
+                ),
+                Text('Weather Tomorrow'),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
