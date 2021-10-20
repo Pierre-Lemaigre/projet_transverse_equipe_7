@@ -20,7 +20,7 @@ class Medicament {
       required this.dureeTraitement})
       : momentPrise = <MomentPrise>[];
 
-  addMomentPrise(MomentPrise prise) {
+  void addMomentPrise(MomentPrise prise) {
     if (priseParJour > momentPrise.length) momentPrise.add(prise);
   }
 

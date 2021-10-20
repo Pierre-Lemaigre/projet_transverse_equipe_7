@@ -37,7 +37,6 @@ void main() {
     assert(adr2 == adr);
     assert(adr3 != adr);
     assert(adr3 == adr3);
-    expect(() => adr == Object, throwsA(TypeMatcher<ArgumentError>()));
   });
 
   test('Adresse peut voir ses membres etre modifies', () {

@@ -17,6 +17,6 @@ class Docteur extends Personne {
 
   bool exerciceAuthorized() {
     // TODO: implement exerciceAuthorized
-    throw UnimplementedError();
+    return true;
   }
 }

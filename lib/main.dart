@@ -14,51 +14,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: HomePage(),
-        ));
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Hello World!'),
-          ElevatedButton(
-            key: Key('button_today'),
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-                primary: Colors.blue
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.wb_sunny,
-                  key: Key('icon_weather'),
-                ),
-                Text('Weather today')
-              ],
-            ),
-          ),
-          ElevatedButton(
-            key: Key('button_tomorrow'),
-            onPressed: () {},
-            child: Row(
-              children: [
-                Icon(
-                  Icons.wb_cloudy,
-                  key: Key('icon_weather_2'),
-                ),
-                Text('Weather Tomorrow'),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+        home: Scaffold());
   }
 }

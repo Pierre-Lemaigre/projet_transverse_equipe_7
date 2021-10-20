@@ -25,7 +25,8 @@ void main() {
   });
 
   test("Une string donne Prise", () {
-    MomentPrise mat = MomentPrise.values.firstWhere((e) => e.toShortString() == "Matin");
+    MomentPrise mat =
+        MomentPrise.values.firstWhere((e) => e.toShortString() == "Matin");
     expect(mat, MomentPrise.Matin);
   });
 }

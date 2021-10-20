@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Adresse {
   String rue;
   int codePostal;
@@ -11,12 +13,13 @@ class Adresse {
       this.complements});
 
   @override
-  bool operator ==(Object other) {
-    if (other is! Adresse)
-      throw ArgumentError('Expected Adresse, but was ${other.runtimeType}');
-    return rue == other.rue &&
-        codePostal == other.codePostal &&
-        ville == other.ville &&
-        complements == other.complements;
-  }
+  bool operator ==(oth) =>
+      oth is Adresse &&
+      rue == oth.rue &&
+      codePostal == oth.codePostal &&
+      ville == oth.ville &&
+      complements == oth.complements;
+
+  @override
+  int get hashCode => hashValues(rue, codePostal, ville, complements);
 }
