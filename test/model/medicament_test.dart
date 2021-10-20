@@ -6,15 +6,15 @@ void main() {
   group("Medicament attributs", () {
     Duration duration = Duration(days: 20);
     Medicament medicament = Medicament(
-      nom: "paracetamol",
-      nombre: 1,
-      dureeTraitement: duration,
-      priseParJour: 2,
-      detail: "Aucun"
-    );
+        cis: 00000001,
+        denomination: "paracetamol",
+        nombre: 1,
+        dureeTraitement: duration,
+        priseParJour: 2,
+        detail: "Aucun");
 
     test("Medicament a un nom", () {
-      expect(medicament.nom, "paracetamol");
+      expect(medicament.denomination, "paracetamol");
     });
 
     test("Medicament a un nombre", () {
@@ -38,17 +38,78 @@ void main() {
     });
   });
 
-  test("On peut ajouter un moment de prise", () {
-    Duration duration = Duration(days: 20);
-    Medicament medicament = Medicament(
-        nom: "paracetamol",
-        nombre: 1,
-        dureeTraitement: duration,
-        priseParJour: 2,
-        detail: "Aucun"
-    );
-    medicament.addMomentPrise(MomentPrise.Matin);
-    medicament.addMomentPrise(MomentPrise.Matin);
-    expect(medicament.momentPrise.first, MomentPrise.Matin);
+  group("Moment Prise", () {
+    test("On peut ajouter un moment de prise", () {
+      Duration duration = Duration(days: 20);
+      Medicament medicament = Medicament(
+          cis: 00000001,
+          denomination: "paracetamol",
+          nombre: 1,
+          dureeTraitement: duration,
+          priseParJour: 2,
+          detail: "Aucun");
+      medicament.addMomentPrise(MomentPrise.Matin);
+      medicament.addMomentPrise(MomentPrise.Matin);
+      expect(medicament.momentPrise.first, MomentPrise.Matin);
+      expect(medicament.momentPrise.length, 2);
+    });
+
+    test("Pas d'ajout de moment prise > priseParJour", () {
+      Duration duration = Duration(days: 20);
+      Medicament medicament = Medicament(
+          cis: 00000001,
+          denomination: "paracetamol",
+          nombre: 1,
+          dureeTraitement: duration,
+          priseParJour: 2,
+          detail: "Aucun");
+      medicament.addMomentPrise(MomentPrise.Matin);
+      medicament.addMomentPrise(MomentPrise.Midi);
+      medicament.addMomentPrise(MomentPrise.Soir);
+      expect(medicament.momentPrise.first, MomentPrise.Matin);
+      expect(medicament.momentPrise.length, 2);
+    });
+  });
+
+  group("Hashage", () {
+    test("On peut comparer deux medicaments", () {
+      Duration duration = Duration(days: 20);
+      Medicament m1 = Medicament(
+          cis: 00000001,
+          denomination: "paracetamol",
+          nombre: 1,
+          dureeTraitement: duration,
+          priseParJour: 2,
+          detail: "Aucun");
+      m1.addMomentPrise(MomentPrise.Matin);
+
+      Medicament m2 = Medicament(
+          cis: 00000001,
+          denomination: "paracetamol",
+          nombre: 1,
+          dureeTraitement: duration,
+          priseParJour: 2,
+          detail: "Aucun");
+      m2.addMomentPrise(MomentPrise.Matin);
+
+      expect(m1 == m2, true);
+    });
+
+    test("Un medicament a un hash connu", () {
+      Duration duration = Duration(days: 20);
+      Medicament medicament = Medicament(
+          cis: 00000001,
+          denomination: "paracetamol",
+          nombre: 1,
+          dureeTraitement: duration,
+          priseParJour: 2,
+          detail: "Aucun");
+
+      medicament.addMomentPrise(MomentPrise.Matin);
+      medicament.addMomentPrise(MomentPrise.Matin);
+
+      expect(medicament.hashCode, 392815270);
+      expect(medicament.hashCode, 392815270);
+    });
   });
 }
