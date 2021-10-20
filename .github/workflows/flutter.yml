@@ -51,5 +51,7 @@ jobs:
         run: flutter test --coverage
 
       - name: Upload covergae to codecov
-        run: curl -s https://codecov.io/bash
-        shell: bash
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${00255752-978f-406b-8481-21ce84592c00}
