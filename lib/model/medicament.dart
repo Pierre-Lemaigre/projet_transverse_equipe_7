@@ -36,6 +36,12 @@ class Medicament {
       listEquals(momentPrise, oth.momentPrise);
 
   @override
-  int get hashCode => hashValues(cis, denomination, detail, priseParJour,
-      nombre, dureeTraitement, dureeTraitement.hashCode);
+  int get hashCode => hashValues(
+      cis,
+      denomination,
+      detail,
+      priseParJour,
+      nombre,
+      dureeTraitement,
+      hashList(momentPrise.map((e) => e.toShortString())));
 }

@@ -108,8 +108,8 @@ void main() {
       medicament.addMomentPrise(MomentPrise.Matin);
       medicament.addMomentPrise(MomentPrise.Matin);
 
-      expect(medicament.hashCode, 392815270);
-      expect(medicament.hashCode, 392815270);
+      expect(medicament.hashCode, 498016452);
+      expect(medicament.hashCode, 498016452);
     });
   });
 }

@@ -29,4 +29,19 @@ void main() {
         MomentPrise.values.firstWhere((e) => e.toShortString() == "Matin");
     expect(mat, MomentPrise.Matin);
   });
+
+  group('Hashage', () {
+    test('Moment prise peut être comparée', () {
+      MomentPrise mid1 = MomentPrise.Midi;
+      MomentPrise mid2 = MomentPrise.Midi;
+
+      expect(mid1 == mid2, true);
+    });
+
+    test('Moment prise a un hash connu', () {
+      MomentPrise mid = MomentPrise.Midi;
+
+      expect(mid.toShortString().hashCode, 888103594);
+    });
+  });
 }
