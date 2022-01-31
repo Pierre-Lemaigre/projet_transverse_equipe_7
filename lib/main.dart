@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_transverse_equipe_7/view/IntroductionAppScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,6 +15,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: Scaffold());
+        home: IntroductionAppScreen());
   }
 }
