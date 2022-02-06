@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_transverse_equipe_7/view/HomeScreenPage.dart';
 import 'package:projet_transverse_equipe_7/view/IntroductionAppScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -51,7 +52,7 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context){
     return !intro_screens ? IntroductionAppScreen() : Scaffold(
-      body: Center(child: Text("Hello"),),
+      body: HomeScreenPage()
     );
   }
 }
