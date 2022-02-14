@@ -33,7 +33,6 @@ class _HomeScreenPage extends State<HomeScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[100],
         floatingActionButton: isFab? SimpleFab() : ExtendedFab(),
         body: SafeArea(
             child: ListView(
@@ -47,7 +46,6 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                     style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue[800]
                     ),
                   ),
                 ),
@@ -68,12 +66,12 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       ),
                     ),
                     Container(
-                        margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                        margin: EdgeInsets.fromLTRB(20, 10, 20, 5),
                         padding: EdgeInsets.all(15),
                         height: 150,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Colors.greenAccent[100],
                             borderRadius: BorderRadius.circular(20)
                         ),
                       child: Row(
@@ -135,13 +133,13 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       height: 150,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(20)
                       ),
                       child: Row(
                           children: <Widget>[
-                            Expanded(
-                              child: Container(
+                            Container(
+                              child: Expanded(
                                 child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
@@ -190,29 +188,32 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                      margin: EdgeInsets.fromLTRB(20, 10, 20, 5),
                       padding: EdgeInsets.all(15),
-                      height: 110,
+                      height: 125,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.blue[100],
                           borderRadius: BorderRadius.circular(20)
                       ),
                       child: Row(
                           children: <Widget>[
-                            Expanded(
-                              child: Container(
+                            Container(
+                              child: Expanded(
                                 child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       SizedBox(
                                         width: 300,
-                                        child: Text(
-                                            'Suivre mon traitement',
-                                            style: TextStyle(
-                                              fontSize: 21,
-                                              fontWeight: FontWeight.bold,
-                                            )
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 12),
+                                          child: Text(
+                                              'Suivre mon traitement',
+                                              style: TextStyle(
+                                                fontSize: 21,
+                                                fontWeight: FontWeight.bold,
+                                              )
+                                          ),
                                         ),
                                       ),
                                       SizedBox(height: 10),
@@ -225,13 +226,12 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                                       )
                                     ]
                                 ),
-                              ),
+                              )
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
                               child: Image.asset(
-                                  'assets/images/home_page/calendar.png',
-                                  fit: BoxFit.contain
+                                  'assets/images/home_page/calendar.png'
                               ),
                             ),
                           ]
@@ -243,7 +243,7 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       height: 150,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(20)
                       ),
                       child: Row(
@@ -255,8 +255,8 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                                 fit: BoxFit.contain,
                               ),
                             ),
-                            Expanded(
-                              child: Container(
+                            Container(
+                              child: Expanded(
                                 child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
