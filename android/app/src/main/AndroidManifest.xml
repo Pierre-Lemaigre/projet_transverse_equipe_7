@@ -2,7 +2,7 @@
     package="org.hsociety.projet_transverse_equipe_7">
    <application
         android:label="projet_transverse_equipe_7"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
