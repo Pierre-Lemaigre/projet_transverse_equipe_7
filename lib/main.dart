@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_transverse_equipe_7/view/HomeScreenPage.dart';
 import 'package:projet_transverse_equipe_7/view/IntroductionAppScreen.dart';
+import 'package:projet_transverse_equipe_7/view/PrescriptionBookPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -51,8 +52,6 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context){
-    return !intro_screens ? IntroductionAppScreen() : Scaffold(
-      body: HomeScreenPage()
-    );
+    return PrescriptionBookPage();
   }
 }
