@@ -3,6 +3,7 @@ import 'package:projet_transverse_equipe_7/Widgets/favorite_card.dart';
 import 'package:projet_transverse_equipe_7/Widgets/favorite_carousel.dart';
 import 'package:projet_transverse_equipe_7/model/prescription.dart';
 import 'package:projet_transverse_equipe_7/view/HomeScreenPage.dart';
+import 'package:projet_transverse_equipe_7/Widgets/return_page_header.dart';
 
 
 class PrescriptionBookPage extends StatefulWidget {
@@ -25,26 +26,7 @@ class _PrescriptionBookPage extends State<PrescriptionBookPage> with TickerProvi
         padding: const EdgeInsets.symmetric(vertical: 30),
         children: <Widget>[
           Container(
-            child: Row(
-              children: <Widget>[
-                IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    iconSize: 30.0,
-                    color: Colors.black,
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreenPage())
-                    )
-                ),
-                Text(
-                  'Mes ordonnances',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold
-                  )
-                )
-              ],
-            )
+            child: ReturnPageHeader(title: 'Mes ordonnances', widget: HomeScreenPage())
           ),
           SizedBox(height: 20),
           FavoriteCarousel(),
