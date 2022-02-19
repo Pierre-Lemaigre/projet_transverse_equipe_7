@@ -22,6 +22,7 @@ class _PrescriptionBookPage extends State<PrescriptionBookPage> with TickerProvi
         '15/12/2021'
     );
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 30),
         children: <Widget>[

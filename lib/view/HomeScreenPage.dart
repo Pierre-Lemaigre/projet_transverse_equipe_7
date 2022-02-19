@@ -33,6 +33,7 @@ class _HomeScreenPage extends State<HomeScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         floatingActionButton: isFab? SimpleFab() : ExtendedFab(),
         body: SafeArea(
             child: ListView(
