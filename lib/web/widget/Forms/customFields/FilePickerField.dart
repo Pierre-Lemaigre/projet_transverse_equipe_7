@@ -71,6 +71,7 @@ class _FilePickerFormState extends State<FilePickerForm> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,15 +81,15 @@ class _FilePickerFormState extends State<FilePickerForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                  iconSize: 90,
+                  iconSize: width >= 1600 ? 90 : 60,
                   padding: EdgeInsets.zero,
                   splashRadius: _fileExist ? 50 : 1,
                   icon: Container(
                     alignment: Alignment.center,
                     child: Image.asset(
                       widget.icone,
-                      width: 75,
-                      height: 75,
+                      width: width >= 1600 ? 75 : 50,
+                      height: width >= 1600 ? 75 : 50,
                     ),
                     decoration: BoxDecoration(
                       color: _enabledColor,

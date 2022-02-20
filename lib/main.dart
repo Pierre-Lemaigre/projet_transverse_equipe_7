@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_transverse_equipe_7/web/webApp.dart';
+import 'package:projet_transverse_equipe_7/web/routes/webApp.dart';
 import 'mobileHomePage.dart';
 
 void main() {

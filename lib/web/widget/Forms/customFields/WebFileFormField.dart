@@ -29,45 +29,53 @@ class _WebFileFormFieldState extends State<WebFileFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.fromLTRB(25, 16, 0, 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4.0, left: 5),
-                child: Text(
-                  tf1,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
+    double width = MediaQuery.of(context).size.width / 3.3;
+    return SizedBox(
+      width: width - 10,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(25, 20, 10, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0, left: 5),
+                    child: Text(
+                      tf1,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  FilePickerForm(icone: icon_path1),
+                ],
               ),
-              FilePickerForm(icone: icon_path1),
-            ],
+            ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(120, 16, 25, 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: Text(
-                  tf2,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(25, 20, 10, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    child: Text(
+                      tf2,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  FilePickerForm(
+                    icone: icon_path2,
+                  ),
+                ],
               ),
-              FilePickerForm(
-                icone: icon_path2,
-              ),
-            ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

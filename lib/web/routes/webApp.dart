@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_transverse_equipe_7/web/views/SignInPage.dart';
 import 'package:projet_transverse_equipe_7/web/views/signUp.dart';
 
 class WebApp extends StatelessWidget {
@@ -11,6 +12,7 @@ class WebApp extends StatelessWidget {
       title: "OrdonnanceDash",
       routes: {
         '/': (context) => const SignUpPage(),
+        '/login': (context) => const SignInPage(),
       },
     );
   }

@@ -49,62 +49,66 @@ class _WebDuoFormFieldState extends State<WebDuoFormField> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(25, 10, 0, 10),
-          child: SizedBox(
-            width: width / 2.5,
-            child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: Text(
-                  tf1,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(25, 10, 5 ,10),
+            child: SizedBox(
+              width: width / 2.5,
+              child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4.0),
+                  child: Text(
+                    tf1,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              TextFormField(
-                controller: tc1,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: h1,
+                TextFormField(
+                  controller: tc1,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: h1,
+                  ),
                 ),
-              ),
-            ]),
+              ]),
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(25, 10, 0, 10),
-          child: SizedBox(
-            width: width / 2.5,
-            child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: Text(
-                  tf2,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(5, 10, 25, 10),
+            child: SizedBox(
+              width: width / 2.5,
+              child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4.0),
+                  child: Text(
+                    tf2,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              TextFormField(
-                controller: tc2,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: h2,
+                TextFormField(
+                  controller: tc2,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: h2,
+                  ),
                 ),
-              ),
-            ]),
+              ]),
+            ),
           ),
         ),
       ],
