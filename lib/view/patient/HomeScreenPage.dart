@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:projet_transverse_equipe_7/Widgets/ExtendedFab.dart';
 import 'package:projet_transverse_equipe_7/Widgets/SimpleFab.dart';
+import 'package:projet_transverse_equipe_7/view/patient/MyTreatmentPage.dart';
+import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage.dart';
+import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
 
 class HomeScreenPage extends StatefulWidget {
   @override
@@ -78,7 +81,12 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PrescriptionMainPage())
+                            );
+                          },
                           splashColor: Colors.greenAccent.withOpacity(0.5),
                           child: Row(
                             children: <Widget>[
@@ -147,7 +155,12 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PrescriptionBookPage())
+                            );
+                          },
                           child: Row(
                               children: <Widget>[
                                 Container(
@@ -213,7 +226,12 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => MyTreatementPage())
+                              );
+                            },
                             splashColor: Colors.blue.withOpacity(0.3),
                             child: Row(
                                 children: <Widget>[
