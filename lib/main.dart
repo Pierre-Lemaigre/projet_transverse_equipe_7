@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:projet_transverse_equipe_7/view/MyTreatmentPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widgets is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,38 +16,40 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: Center(child: HomePage(onPressed: () => true,)),
-        ));
+        home: HomePage()
+    );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key, required this.onPressed}) : super(key: key);
-  final VoidCallback onPressed;
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Hello World!'),
-        ElevatedButton(
-          onPressed: () => onPressed.call(),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Icons.wb_sunny,
-                key: Key('icon_weather'),
-              ),
-              Text('Weather today'),
-            ],
-          ),
-        ),
-      ],
-    );
+  _HomePage createState() => _HomePage();
+}
+
+class _HomePage extends State<HomePage> {
+  bool intro_screens = false;
+  String key = 'intro_screen_viewed';
+
+  void _loadIntroScreen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      intro_screens = (prefs.getBool(key) ?? false);
+    });
+    if (!intro_screens) {
+      await prefs.setBool(key, true);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadIntroScreen();
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return MyTreatementPage();
   }
 }
