@@ -14,19 +14,19 @@ class _IntroductionAppScreen extends State<IntroductionAppScreen> {
         title: "Sauvegardez vos prescriptions",
         body:
             "Scannez le QR code chez votre médecin et sauvegarder la prescription sur votre smartphone.",
-        image: Image.asset("images/intro_screens/prescription_logo.png", height: 250.0,),
+        image: Image.asset("assets/images/intro_screens/prescription_logo.png", height: 250.0,),
       ),
       PageViewModel(
         title: "Gagnez du temps",
         body:
             "Présentez votre QR code au pharmarcien, finie la galère du papier et place à la rapidité.",
-        image: Image.asset("images/intro_screens/hourglass.png", height: 250.0,),
+        image: Image.asset("assets/images/intro_screens/calendar.png", height: 250.0,),
       ),
       PageViewModel(
         title: "Suivez votre traitement",
         body:
             "Avec OrdonnanceDash, suivez votre traitement à la lettre avec un calendrier et des notifications automatiques.",
-        image: Image.asset("images/intro_screens/calendar.png", height: 250.0,),
+        image: Image.asset("assets/images/home_page/calendar.png", height: 250.0,),
       ),
     ];
   }
