@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_transverse_equipe_7/view/consultant/webApp.dart';
+import 'package:projet_transverse_equipe_7/view/patient/HomeScreenPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/IntroductionAppScreen.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,6 +54,6 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context){
-    return kIsWeb? WebApp() : intro_screens ? IntroductionAppScreen() : HomePage();
+    return kIsWeb? WebApp() : !intro_screens ? IntroductionAppScreen() : HomeScreenPage();
   }
 }
