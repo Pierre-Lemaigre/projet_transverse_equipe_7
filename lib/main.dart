@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_transverse_equipe_7/view/MyTreatmentPage.dart';
+import 'package:projet_transverse_equipe_7/view/consultant/webApp.dart';
+import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -50,6 +52,6 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context){
-    return MyTreatementPage();
+    return kIsWeb? WebApp() : PrescriptionMainPage();
   }
 }

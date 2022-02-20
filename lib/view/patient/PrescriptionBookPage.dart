@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_transverse_equipe_7/Widgets/favorite_card.dart';
 import 'package:projet_transverse_equipe_7/Widgets/favorite_carousel.dart';
 import 'package:projet_transverse_equipe_7/model/prescription.dart';
-import 'package:projet_transverse_equipe_7/view/HomeScreenPage.dart';
+import 'package:projet_transverse_equipe_7/view/patient/HomeScreenPage.dart';
 import 'package:projet_transverse_equipe_7/Widgets/return_page_header.dart';
 
 
