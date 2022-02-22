@@ -54,7 +54,9 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                   ),
                 ),
                 Center(
-                    child: Lottie.asset('assets/animations/pharmacist_animation.json')
+                    child: const Image(
+                      image: const AssetImage("assets/animations/pharmacy_f.gif"),
+                    )
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
