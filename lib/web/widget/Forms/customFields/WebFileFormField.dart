@@ -46,7 +46,7 @@ class _WebFileFormFieldState extends State<WebFileFormField> {
                     padding: const EdgeInsets.only(bottom: 4.0, left: 5),
                     child: Text(
                       tf1,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey.shade900),
                     ),
                   ),
                   FilePickerForm(icone: icon_path1),
@@ -64,7 +64,7 @@ class _WebFileFormFieldState extends State<WebFileFormField> {
                     padding: const EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       tf2,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey.shade900),
                     ),
                   ),
                   FilePickerForm(

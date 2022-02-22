@@ -60,7 +60,7 @@ class _WebDuoFormFieldState extends State<WebDuoFormField> {
                   padding: const EdgeInsets.only(bottom: 4.0),
                   child: Text(
                     tf1,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey.shade900),
                   ),
                 ),
                 TextFormField(
@@ -91,7 +91,7 @@ class _WebDuoFormFieldState extends State<WebDuoFormField> {
                   padding: const EdgeInsets.only(bottom: 4.0),
                   child: Text(
                     tf2,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey.shade900),
                   ),
                 ),
                 TextFormField(

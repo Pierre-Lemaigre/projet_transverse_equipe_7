@@ -1,18 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_transverse_equipe_7/web/views/signUpPage.dart';
-import 'package:projet_transverse_equipe_7/web/widget/Forms/SignInForm.dart';
+import 'package:projet_transverse_equipe_7/web/views/SignInPage.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/SignUpForm.dart';
 import 'package:projet_transverse_equipe_7/web/widget/Utils/title.dart';
 
-class SignInPage extends StatefulWidget {
-  static const String route = "/";
-  const SignInPage({Key? key}) : super(key: key);
+class SignUpPage extends StatelessWidget {
+  static const String route = "/signup";
 
-  @override
-  _SignInPageState createState() => _SignInPageState();
-}
+  const SignUpPage();
 
-class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -24,7 +20,6 @@ class _SignInPageState extends State<SignInPage> {
         padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Align(
               alignment: Alignment.topLeft,
@@ -33,7 +28,10 @@ class _SignInPageState extends State<SignInPage> {
             Expanded(
               child: Align(
                 alignment: Alignment.topCenter,
-                child: SignInForm(),
+                child: Container(
+                  child: SignUpForm(),
+                  margin: EdgeInsets.all(15),
+                ),
               ),
             ),
             Align(
@@ -42,20 +40,21 @@ class _SignInPageState extends State<SignInPage> {
                 text: TextSpan(
                   children: [
                     const TextSpan(
-                      text: "Aucun compte? ",
+                      text: "Déjà inscrit ? ",
                       style: const TextStyle(
                         color: Colors.black,
                       ),
                     ),
                     TextSpan(
-                      text: "S'inscrire",
-                      recognizer: TapGestureRecognizer()..onTap = () {
-                        Navigator.popAndPushNamed(context, SignUpPage.route);
-                      },
+                      text: "Se connecter",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.popAndPushNamed(
+                              context, SignInPage.route);
+                        },
                       style: const TextStyle(
                           decoration: TextDecoration.underline,
-                          color: Colors.blue
-                      ),
+                          color: Colors.blue),
                     ),
                   ],
                 ),

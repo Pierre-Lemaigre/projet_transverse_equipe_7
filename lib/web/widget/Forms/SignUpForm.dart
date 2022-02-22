@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_transverse_equipe_7/web/views/SignInPage.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/SignInForm.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebButtonForm.dart';
 
 import 'customFields/WebDropdownFormField.dart';
 import 'customFields/WebDuoFormField.dart';
@@ -61,38 +64,41 @@ class _SignUpFormState extends State<SignUpForm> {
                   ),
                   elevation: 3,
                   color: Colors.teal[50],
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 25.0,
-                          bottom: 15,
-                        ),
-                        child: Text(
-                          "Informations de connexion",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 25.0,
+                            bottom: 15,
+                          ),
+                          child: Text(
+                            "Informations de connexion",
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      WebSingleFormField(
-                        controller: _adressMail,
-                        hint: "email@example.com",
-                        titleField: "Adresse Mail",
-                      ),
-                      WebPasswordFormField(
-                        editingController: _password,
-                        hint: "Super mot de passe",
-                        titleField: "Mot de Passe",
-                      ),
-                      WebPasswordFormField(
-                        editingController: _confirmPassword,
-                        hint: "Super mot de passe",
-                        titleField: "Confirmez le mot de Passe",
-                      ),
-                    ],
+                        WebSingleFormField(
+                          controller: _adressMail,
+                          hint: "email@example.com",
+                          titleField: "Adresse Mail",
+                        ),
+                        WebPasswordFormField(
+                          editingController: _password,
+                          hint: "Super mot de passe",
+                          titleField: "Mot de Passe",
+                        ),
+                        WebPasswordFormField(
+                          editingController: _confirmPassword,
+                          hint: "Super mot de passe",
+                          titleField: "Confirmez le mot de Passe",
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -106,54 +112,57 @@ class _SignUpFormState extends State<SignUpForm> {
                   ),
                   elevation: 3,
                   color: Colors.green[50],
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 25.0,
-                          bottom: 15,
-                        ),
-                        child: Text(
-                          "Informations personnelles",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 25.0,
+                            bottom: 15,
+                          ),
+                          child: Text(
+                            "Informations personnelles",
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      WebSingleFormField(
-                        controller: _nom,
-                        titleField: 'Nom',
-                        hint: 'Roux',
-                      ),
-                      WebSingleFormField(
-                        controller: _prenom,
-                        titleField: "Prénom",
-                        hint: "Thomas",
-                      ),
-                      WebDuoFormField(
-                        textController1: _region,
-                        hint1: "Ile-de-France",
-                        textField1: "Région",
-                        textController2: _departement,
-                        hint2: "Paris",
-                        textField2: "Département",
-                      ),
-                      WebSingleFormField(
-                        controller: _adresse,
-                        hint: "57, Place de la Madelaine",
-                        titleField: "Adresse",
-                      ),
-                      WebDuoFormField(
-                        textController1: _ville,
-                        hint1: "Paris",
-                        textField1: "Ville",
-                        textController2: _codePostal,
-                        hint2: "75013",
-                        textField2: "Code Postal",
-                      ),
-                    ],
+                        WebSingleFormField(
+                          controller: _nom,
+                          titleField: 'Nom',
+                          hint: 'Roux',
+                        ),
+                        WebSingleFormField(
+                          controller: _prenom,
+                          titleField: "Prénom",
+                          hint: "Thomas",
+                        ),
+                        WebDuoFormField(
+                          textController1: _region,
+                          hint1: "Ile-de-France",
+                          textField1: "Région",
+                          textController2: _departement,
+                          hint2: "Paris",
+                          textField2: "Département",
+                        ),
+                        WebSingleFormField(
+                          controller: _adresse,
+                          hint: "57, Place de la Madelaine",
+                          titleField: "Adresse",
+                        ),
+                        WebDuoFormField(
+                          textController1: _ville,
+                          hint1: "Paris",
+                          textField1: "Ville",
+                          textController2: _codePostal,
+                          hint2: "75013",
+                          textField2: "Code Postal",
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -167,71 +176,63 @@ class _SignUpFormState extends State<SignUpForm> {
                   ),
                   elevation: 3,
                   color: Colors.lightBlue[50],
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 25.0,
-                          bottom: 15,
-                        ),
-                        child: Text(
-                          "Informations d'exercice",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 25.0,
+                            bottom: 15,
+                          ),
+                          child: Text(
+                            "Informations d'exercice",
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      WebSingleFormField(
-                        controller: _discipline,
-                        hint: "Neurologie",
-                        titleField: "Discipline",
-                      ),
-                      WebSingleFormField(
-                        controller: _titreMedecin,
-                        hint: "Docteur",
-                        titleField: "Titre",
-                      ),
-                      Container(
-                        child: WebDropdownFormField(
-                          tf1: "Statut",
-                          items: [
-                            "En activité",
-                            "Retraité",
-                            "Indifférent",
-                          ],
+                        WebSingleFormField(
+                          controller: _discipline,
+                          hint: "Neurologie",
+                          titleField: "Discipline",
                         ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      WebFileFormField(
-                        tf1: "Ajouter un diplôme",
-                        tf2: "Ajouter une identité",
-                        iconPath1: "images/web/inscription/diplome.png",
-                        iconPath2: "images/web/inscription/identite.png",
-                      ),
-                    ],
+                        WebSingleFormField(
+                          controller: _titreMedecin,
+                          hint: "Docteur",
+                          titleField: "Titre",
+                        ),
+                        Container(
+                          child: WebDropdownFormField(
+                            tf1: "Statut",
+                            items: [
+                              "En activité",
+                              "Retraité",
+                              "Indifférent",
+                            ],
+                          ),
+                          alignment: Alignment.centerLeft,
+                        ),
+                        WebFileFormField(
+                          tf1: "Ajouter un diplôme",
+                          tf2: "Ajouter une identité",
+                          iconPath1: "images/web/inscription/diplome.png",
+                          iconPath2: "images/web/inscription/identite.png",
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.blueAccent),
-              ),
-              onPressed: () {},
-              child: Text(
-                'Inscription',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87,
-                ),
-              ),
-            ),
+          WebButtonForm(
+            buttonText: 'Inscription',
+            onTap: () {
+              Navigator.pushReplacementNamed(context, SignInPage.route);
+            },
           ),
         ],
       ),
