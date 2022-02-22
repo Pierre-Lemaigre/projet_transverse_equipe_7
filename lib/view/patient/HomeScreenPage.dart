@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:projet_transverse_equipe_7/Widgets/ExtendedFab.dart';
 import 'package:projet_transverse_equipe_7/Widgets/SimpleFab.dart';
+import 'package:projet_transverse_equipe_7/view/patient/MyTreatmentPage.dart';
+import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage.dart';
+import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
 
 class HomeScreenPage extends StatefulWidget {
   @override
@@ -78,13 +81,20 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PrescriptionMainPage())
+                            );
+                          },
                           splashColor: Colors.greenAccent.withOpacity(0.5),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(right: 20),
-                                child: Image.asset('assets/images/home_page/qr_code.png'),
+                              Image.asset(
+                                'assets/images/home_page/qr_code.png',
+                                width: 100,
+                                height: 100,
                               ),
                               Container(
                                 child: Column(
@@ -93,7 +103,7 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                                     Text(
                                       'Ordonnance favorite',
                                       style: TextStyle(
-                                        fontSize: 21,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold
                                       )
                                     ),
@@ -147,11 +157,16 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PrescriptionBookPage())
+                            );
+                          },
                           child: Row(
                               children: <Widget>[
                                 Container(
-                                  child: Expanded(
+                                  width: 200,
                                     child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
@@ -177,14 +192,12 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                                           ),
                                         ]
                                     ),
-                                  ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20, right: 25),
-                                  child: Image.asset(
-                                      'assets/images/home_page/prescr_book.png',
-                                      fit: BoxFit.contain
-                                  ),
+                                Image.asset(
+                                    'assets/images/home_page/prescr_book.png',
+                                    width: 100,
+                                    height: 100,
+                                    fit: BoxFit.contain
                                 ),
                               ]
                           ),
@@ -213,35 +226,32 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => MyTreatementPage())
+                              );
+                            },
                             splashColor: Colors.blue.withOpacity(0.3),
                             child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: <Widget>[
                                   Container(
                                       child: Expanded(
                                         child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: <Widget>[
-                                              SizedBox(
-                                                width: 300,
-                                                child: Padding(
-                                                  padding: const EdgeInsets.only(top: 12),
-                                                  child: Text(
-                                                      'Suivre mon traitement',
-                                                      style: TextStyle(
-                                                        fontSize: 21,
-                                                        fontWeight: FontWeight.bold,
-                                                      )
-                                                  ),
-                                                ),
+                                              Text(
+                                                  'Suivre mon traitement',
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                  )
                                               ),
                                               SizedBox(height: 10),
-                                              SizedBox(
-                                                width: 300,
-                                                child: Text(
-                                                    'Tous les médicaments à prendre aujourd\'hui et prochainement',
-                                                    style: TextStyle(fontSize: 15)
-                                                ),
+                                              Text(
+                                                  'Tous les médicaments à prendre aujourd\'hui et prochainement',
+                                                  style: TextStyle(fontSize: 16)
                                               )
                                             ]
                                         ),
@@ -250,7 +260,9 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Image.asset(
-                                        'assets/images/home_page/calendar.png'
+                                      'assets/images/home_page/calendar.png',
+                                      width: 100,
+                                      height: 100,
                                     ),
                                   ),
                                 ]
@@ -277,6 +289,8 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                                   padding: const EdgeInsets.only(right: 20),
                                   child: Image.asset(
                                       'assets/images/home_page/map.png',
+                                    width: 90,
+                                    height: 90,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -287,24 +301,18 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                                         children: <Widget>[
                                           Padding(
                                             padding: const EdgeInsets.only(top: 25.0),
-                                            child: SizedBox(
-                                              width: 300,
-                                              child: Text(
-                                                  'Trouver une pharmacie',
-                                                  style: TextStyle(
-                                                    fontSize: 19,
-                                                    fontWeight: FontWeight.bold,
-                                                  )
-                                              ),
+                                            child: Text(
+                                                'Trouver une pharmacie',
+                                                style: TextStyle(
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.bold,
+                                                )
                                             ),
                                           ),
                                           SizedBox(height: 10),
-                                          SizedBox(
-                                            width: 300,
-                                            child: Text(
-                                                'Trouvez la pharmacie la plus rapide et proche de chez vous',
-                                                style: TextStyle(fontSize: 15)
-                                            ),
+                                          Text(
+                                              'Trouvez la pharmacie la plus rapide et proche de chez vous',
+                                              style: TextStyle(fontSize: 15)
                                           )
                                         ]
                                     ),
