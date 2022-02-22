@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:projet_transverse_equipe_7/Widgets/ExtendedFab.dart';
 import 'package:projet_transverse_equipe_7/Widgets/SimpleFab.dart';
+import 'package:projet_transverse_equipe_7/view/patient/Maps.dart';
 import 'package:projet_transverse_equipe_7/view/patient/MyTreatmentPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
@@ -288,7 +289,12 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => MyMap())
+                            );
+                          },
                           child: Row(
                               children: <Widget>[
                                 Padding(
