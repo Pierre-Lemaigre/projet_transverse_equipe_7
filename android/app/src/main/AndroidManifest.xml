@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.hsociety.projet_transverse_equipe_7">
-   <application
+    
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <application
         android:label="OrdonnanceDash"
         android:icon="@mipmap/launcher_icon">
 
