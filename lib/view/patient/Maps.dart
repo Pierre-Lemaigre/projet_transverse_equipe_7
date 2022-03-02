@@ -38,21 +38,21 @@ class MapSampleState extends State<MapSample> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
+        onPressed: _goToThePharmacy,
+        label: Text('To the pharmacy!'),
+        icon: Icon(Icons.local_pharmacy_rounded),
       ),
     );
   }
 
-  Future<void> _goToTheLake() async {
+  Future<void> _goToThePharmacy() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }

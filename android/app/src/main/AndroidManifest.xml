@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.hsociety.projet_transverse_equipe_7">
    <application
-        android:label="projet_transverse_equipe_7"
+        android:label="OrdonnanceDash"
         android:icon="@mipmap/launcher_icon">
 
        <meta-data
