@@ -1,6 +1,12 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebAdderFormField.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebButtonForm.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebCheckBoxFieldForm.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebIntSpinFormField.dart';
 import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebSingleFormField.dart';
-import 'package:flutter_spinbox/flutter_spinbox.dart';
 
 class PrescriptionForm extends StatefulWidget {
   const PrescriptionForm({Key? key}) : super(key: key);
@@ -19,15 +25,15 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
 
   @override
   Widget build(BuildContext context) {
-    double witdh = MediaQuery.of(context).size.width/3.47;
-    double height = MediaQuery.of(context).size.height/1.6;
+    double witdh = MediaQuery.of(context).size.width / 3.47;
+    double height = MediaQuery.of(context).size.height / 1.55;
     return Form(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 50, 0, 4),
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 4),
             child: const Text(
               "Prescrire une ordonnance",
               style: TextStyle(
@@ -40,7 +46,8 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
             child: Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 75),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 75),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -59,7 +66,7 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  top: 25.0,
+                                  top: 15,
                                   bottom: 15,
                                 ),
                                 child: Text(
@@ -77,7 +84,8 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                                 titleField: "Nom",
                               ),
                               WebSingleFormField(
-                                controller: _prenom, hint: "Louis",
+                                controller: _prenom,
+                                hint: "Louis",
                                 titleField: "Prénom",
                               ),
                               WebSingleFormField(
@@ -105,7 +113,7 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  top: 25.0,
+                                  top: 15,
                                   bottom: 15,
                                 ),
                                 child: Text(
@@ -122,33 +130,35 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                                 hint: "Nom médicament",
                                 titleField: "Médicaments",
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-                                child: Container(
-                                  color: Colors.white,
-                                  child: SpinBox(
-                                    incrementIcon: Icon(Icons.arrow_forward_rounded),
-                                    decrementIcon: Icon(Icons.arrow_back_rounded),
-                                    min: 0,
-                                    max: 10,
-                                    value: 0,
-                                    spacing: 1,
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
+                              WebIntSpinFormField(
+                                title: "Fois par jour",
+                                minValue: 0,
+                                maxValue: 10,
+                              ),
+                              WebIntSpinFormField(
+                                title: "Pendant X jours",
+                                minValue: 0,
+                                maxValue: 30,
                               ),
                               WebSingleFormField(
                                 controller: _reference,
                                 hint: "MTE NR QCP AR",
                                 titleField: "Référence",
                               ),
+                              WebIntSpinFormField(
+                                title: "Renouvellement",
+                                minValue: 0,
+                                maxValue: 11,
+                              ),
                               WebSingleFormField(
                                 controller: _consignes,
-                                hint: "Prise au matin et au soir",
+                                hint: "Prise pendant les repas",
                                 titleField: "Consignes",
                               ),
+                              WebCheckBoxFieldForm(),
+                              WebAdderFormField(
+                                titleField: "Ajouter un médicament",
+                              )
                             ],
                           ),
                         ),
@@ -169,11 +179,11 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  top: 25.0,
+                                  top: 15.0,
                                   bottom: 15,
                                 ),
                                 child: Text(
-                                  "Informations Patient",
+                                  "Récapitulatif",
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontSize: 20,
@@ -181,19 +191,16 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                                   ),
                                 ),
                               ),
-                              WebSingleFormField(
-                                controller: _nom,
-                                hint: "Roux",
-                                titleField: "Nom",
-                              ),
-                              WebSingleFormField(
-                                controller: _prenom, hint: "Louis",
-                                titleField: "Prénom",
-                              ),
-                              WebSingleFormField(
-                                controller: _secusociale,
-                                hint: "1 90 12 44 113 492",
-                                titleField: "Numéro de sécurité sociale",
+                              Container(
+                                width: witdh - 75,
+                                height: height - 100,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade50,
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: Colors.black54,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -205,6 +212,11 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
               ),
             ),
           ),
+
+          WebButtonForm(
+            buttonText: "Générer Ordonnance",
+            onTap: () {},
+          )
         ],
       ),
     );
