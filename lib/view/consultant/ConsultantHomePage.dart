@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_transverse_equipe_7/Widgets/InputField.dart';
 import 'package:projet_transverse_equipe_7/Widgets/return_page_header.dart';
 import 'package:projet_transverse_equipe_7/view/patient/HomeScreenPage.dart';
 
@@ -10,86 +11,20 @@ class ConsultantHomePage extends StatefulWidget {
 
 class _ConsultantHomePageState extends State<ConsultantHomePage> {
 
-  late String _drugA;
-  late String _drugBeta;
-  late String _drugDelta;
+  String _drugA = "";
+  String _drugBeta = "";
+  String _drugDelta = "";
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   Widget _buildDrugAField() {
-    return Container(
-      height: 45,
-      margin: EdgeInsets.only(right: 5),
-      child: TextFormField(
-        decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(7)),
-          ),
-        ),
-        style: TextStyle(fontSize: 20),
-        keyboardType: TextInputType.number,
-        validator: (value) {
-          if (value!.isEmpty || RegExp(r'[a-zA-Z]+[_ -]$').hasMatch(value)) {
-            return 'Entrez un nombre';
-          }
-        },
-        onSaved: (String? value) {
-          _drugA = value!;
-        },
-      ),
-    );
+    return InputField(_drugA);
   }
   Widget _buildDrugBetaField() {
-    return Container(
-      height: 45,
-      margin: EdgeInsets.only(right: 5),
-      child: TextFormField(
-        decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(7)),
-          ),
-        ),
-        style: TextStyle(fontSize: 20),
-        keyboardType: TextInputType.number,
-        validator: (value) {
-          if (value!.isEmpty || RegExp(r'[a-zA-Z]+[_ -]$').hasMatch(value)) {
-            return 'Entrez un nombre';
-          }
-        },
-        onSaved: (String? value) {
-          _drugBeta = value!;
-        },
-      ),
-    );
+    return InputField(_drugBeta);
   }
   Widget _buildDrugDeltaField() {
-    return Container(
-      height: 45,
-      margin: EdgeInsets.only(right: 5),
-      child: TextFormField(
-        decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(7)),
-          ),
-        ),
-        style: TextStyle(fontSize: 20),
-        keyboardType: TextInputType.number,
-        validator: (value) {
-          if (value!.isEmpty || RegExp(r'[a-zA-Z]+[_ -]$').hasMatch(value)) {
-            return 'Entrez un nombre';
-          }
-        },
-        onSaved: (String? value) {
-          _drugDelta = value!;
-        },
-      ),
-    );
+    return InputField(_drugDelta);
   }
 
   @override
@@ -324,13 +259,14 @@ class _ConsultantHomePageState extends State<ConsultantHomePage> {
                           margin: EdgeInsets.only(bottom: 5),
                           padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
                           child: Form(
+                            key: _formkey,
                             child: Column(
                               children: <Widget>[
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: <Widget>[
                                     Expanded(
-                                      flex: 7,
+                                      flex: 10,
                                       child: Text(
                                         'Medicament A\n' + '3 fois par jour AVR pendant 20 jours\n' +
                                             'MTE NR QCP AR',
@@ -351,7 +287,7 @@ class _ConsultantHomePageState extends State<ConsultantHomePage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: <Widget>[
                                     Expanded(
-                                      flex: 7,
+                                      flex: 10,
                                       child: Text(
                                         'Medicament Beta\n' +
                                         '3 fois par jour AVR pendant 20 jours\n' +
@@ -372,7 +308,7 @@ class _ConsultantHomePageState extends State<ConsultantHomePage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: <Widget>[
                                     Expanded(
-                                      flex: 7,
+                                      flex: 10,
                                       child: Text(
                                         'Medicament A\n' + '3 fois par jour AVR pendant 20 jours\n' +
                                             'MTE NR QCP AR',
@@ -473,10 +409,13 @@ class _ConsultantHomePageState extends State<ConsultantHomePage> {
                       ),
                     ],
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
                         _formkey.currentState!.save();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Processing Data')),
+                        );
                         print(_drugA);
                         print(_drugBeta);
                         print(_drugDelta);
