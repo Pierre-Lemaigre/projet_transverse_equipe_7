@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:projet_transverse_equipe_7/Widgets/ExtendedFab.dart';
 import 'package:projet_transverse_equipe_7/Widgets/SimpleFab.dart';
-import 'package:projet_transverse_equipe_7/view/patient/Maps.dart';
 import 'package:projet_transverse_equipe_7/view/patient/MyTreatmentPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
+import 'package:projet_transverse_equipe_7/view/patient/current_location.dart';
+import 'package:projet_transverse_equipe_7/view/patient/current_location.dart';
+
 
 class HomeScreenPage extends StatefulWidget {
   @override
@@ -292,7 +294,7 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                           onTap: () {
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => MyMap())
+                                MaterialPageRoute(builder: (context) =>CurrentLocationScreen())
                             );
                           },
                           child: Row(
