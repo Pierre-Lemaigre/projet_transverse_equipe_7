@@ -5,12 +5,14 @@ class WebIntSpinFormField extends StatefulWidget {
   final String title;
   final double minValue;
   final double maxValue;
+  final void Function(double) changeState;
 
   const WebIntSpinFormField({
     Key? key,
     required this.title,
     required this.minValue,
     required this.maxValue,
+    required this.changeState,
   }) : super(key: key);
 
   @override
@@ -22,6 +24,8 @@ class WebIntSpinFormField extends StatefulWidget {
 }
 
 class _WebIntSpinFormFieldState extends State<WebIntSpinFormField> {
+  final GlobalKey<_WebIntSpinFormFieldState> _key =
+      GlobalKey<_WebIntSpinFormFieldState>();
   String t1;
   double minValue;
   double maxValue;
@@ -35,6 +39,7 @@ class _WebIntSpinFormFieldState extends State<WebIntSpinFormField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
+      key: _key,
       padding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,6 +71,7 @@ class _WebIntSpinFormFieldState extends State<WebIntSpinFormField> {
               decoration: InputDecoration(
                 border: InputBorder.none,
               ),
+              onChanged: widget.changeState,
             ),
           ),
         ],

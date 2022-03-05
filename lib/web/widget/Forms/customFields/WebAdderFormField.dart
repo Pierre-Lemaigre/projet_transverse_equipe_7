@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class WebAdderFormField extends StatefulWidget {
   final String titleField;
+  final void Function()? buttonFunction;
 
-  const WebAdderFormField({Key? key, required this.titleField})
+  const WebAdderFormField({Key? key, required this.titleField, required this.buttonFunction})
       : super(key: key);
 
   @override
@@ -36,7 +37,7 @@ class _WebAdderFormFieldState extends State<WebAdderFormField> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: widget.buttonFunction,
             icon: Icon(Icons.add_circle_outline_rounded),
             splashRadius: 25,
           )

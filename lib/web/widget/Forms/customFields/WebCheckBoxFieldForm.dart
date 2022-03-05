@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class WebCheckBoxFieldForm extends StatefulWidget {
-  const WebCheckBoxFieldForm({Key? key}) : super(key: key);
+  final void Function(bool value) matinValue;
+  final void Function(bool value) midiValue;
+  final void Function(bool value) soirValue;
+
+  const WebCheckBoxFieldForm(
+      {Key? key,
+      required this.matinValue,
+      required this.midiValue,
+      required this.soirValue})
+      : super(key: key);
 
   @override
   _WebCheckBoxFieldFormState createState() => _WebCheckBoxFieldFormState();
@@ -54,6 +63,7 @@ class _WebCheckBoxFieldFormState extends State<WebCheckBoxFieldForm> {
                         setState(() {
                           matin = value!;
                         });
+                        widget.matinValue(matin);
                       },
                     ),
                   ],
@@ -82,6 +92,7 @@ class _WebCheckBoxFieldFormState extends State<WebCheckBoxFieldForm> {
                         setState(() {
                           midi = value!;
                         });
+                        widget.midiValue(midi);
                       },
                     ),
                   ],
@@ -110,6 +121,7 @@ class _WebCheckBoxFieldFormState extends State<WebCheckBoxFieldForm> {
                         setState(() {
                           soir = value!;
                         });
+                        widget.soirValue(soir);
                       },
                     ),
                   ],
