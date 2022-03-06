@@ -31,7 +31,7 @@ class _WebSingleFormFieldState extends State<WebSingleFormField> {
           padding: const EdgeInsets.only(bottom: 4.0),
           child: Text(
             titleField,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey.shade900),
           ),
         ),
         TextFormField(

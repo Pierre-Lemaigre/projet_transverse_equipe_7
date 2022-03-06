@@ -34,7 +34,7 @@ class _WebPasswordFormFieldState extends State<WebPasswordFormField> {
           padding: const EdgeInsets.only(bottom: 4.0),
           child: Text(
             titleField,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey.shade900),
           ),
         ),
         PasswordField(editingController, hint),

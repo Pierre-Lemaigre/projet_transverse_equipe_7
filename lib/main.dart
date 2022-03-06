@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_transverse_equipe_7/view/patient/HomeScreenPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/IntroductionAppScreen.dart';
-import 'package:projet_transverse_equipe_7/web/webApp.dart';
+import 'package:projet_transverse_equipe_7/web/routes/webApp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
