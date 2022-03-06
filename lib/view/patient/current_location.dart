@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:projet_transverse_equipe_7/model/place.dart';
+import 'package:http/http.dart'as http;
+import 'dart:convert' as convert;
+import 'package:projet_transverse_equipe_7/services/marker_services.dart';
+
 
 class CurrentLocationScreen extends StatefulWidget {
   const CurrentLocationScreen({Key? key}) : super(key: key);
@@ -13,6 +18,9 @@ class CurrentLocationScreen extends StatefulWidget {
 class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
 
   late GoogleMapController googleMapController;
+  Set<Marker> pharmacyMarkers = new Set();
+
+  final markerService = MarkerService();
 
   static const CameraPosition initialCameraPosition = CameraPosition(target: LatLng(48.89, 2.26),zoom: 14);
 
@@ -75,4 +83,22 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
 
     return position;
   }
+
+  Future<List<Place>> getPharmacy (double lat, double lng) async {
+    var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$lat,$lng&radius=1500&type=pharmacy&key=AIzaSyCdAd5UE-L0CC_53t0ZG4PQUN4FP3ZvxHA';
+
+    var response = await http.get(Uri.parse(url));
+    var json = convert.jsonDecode(response.body);
+    var jsonResults = json['results'] as List;
+    return jsonResults.map((place) => Place.fromJson(place)).toList();
+  }
+
+  TooglePlace(LatLng latLng) async {
+    var places = await getPharmacy(latLng.latitude, latLng.longitude);
+    pharmacyMarkers= {};
+    if (places.length > 0){
+      var newMarker = markerService.createMarkerFromPlace(places[0], false);
+    }
+  }
+
 }
