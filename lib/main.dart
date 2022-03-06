@@ -13,7 +13,7 @@ void main() {
 
   //Tests gd
   DataManager dm = new DataManager();
-  String content = "{\"patient\":\"{\"numSS\":\"1 98 078 03322\",\"nom\":\"Roux\",\"prenom\":\"Louis\"}\",\"medicaments\":\"[{\"cis\":0,\"nom\":\"Mazeae\",\"denomination\":\"MTE ERERA\",\"detail\":\"Prise repas\",\"renouvellement\":1,\"duree\":1,\"prise_jour\":2,\"moment_prise\":\"[\\\"Matin\\\",\\\"Midi\\\"]\"}]\",\"hash\":145536398}";
+  String content = '{"patient":"{"numSS":"1 98 078 03322","nom":"Roux","prenom":"Louis"}","medicaments":"[{"cis":0,"nom":"Mazeae","denomination":"MTE ERERA","detail":"Prise repas","renouvellement":1,"duree":1,"prise_jour":2,"moment_prise":"["Matin","Midi"]"}]","hash":145536398}';
 
   dm.WritePrescription(content, "0");
 
