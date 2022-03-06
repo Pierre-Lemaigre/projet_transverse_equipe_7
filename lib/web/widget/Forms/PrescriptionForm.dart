@@ -1,6 +1,19 @@
+import 'dart:convert';
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_transverse_equipe_7/model/helper/momentprise.dart';
+import 'package:projet_transverse_equipe_7/model/medicament.dart';
+import 'package:projet_transverse_equipe_7/model/ordonnance.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebAdderFormField.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebButtonForm.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebCheckBoxFieldForm.dart';
+import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebIntSpinFormField.dart';
 import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebSingleFormField.dart';
-import 'package:flutter_spinbox/flutter_spinbox.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+
+import '../../../model/patient.dart';
 
 class PrescriptionForm extends StatefulWidget {
   const PrescriptionForm({Key? key}) : super(key: key);
@@ -10,24 +23,61 @@ class PrescriptionForm extends StatefulWidget {
 }
 
 class _PrescriptionFormState extends State<PrescriptionForm> {
+  final _globalFormKey = GlobalKey<FormState>();
   final _nom = TextEditingController();
   final _prenom = TextEditingController();
   final _secusociale = TextEditingController();
   final _medicament = TextEditingController();
   final _reference = TextEditingController();
   final _consignes = TextEditingController();
+  final _medicsFormKey = GlobalKey<FormState>();
+  bool _qr_code_print = false;
+  late QrImage _qr_image;
+  List<Widget> _recapMedicList = [];
+  List<Medicament> _medsList = [];
+  late Patient _patient;
+  double fois = 0;
+  double duree = 0;
+  double renouvellement = 0;
+  int checked = 0;
+  bool matin = false;
+  bool midi = false;
+  bool soir = false;
+
+  Widget _meds(Medicament medic) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(medic.nom),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 8, 8, 4),
+            child: Text(
+                "${medic.priseParJour} par jour, pendant ${medic.dureeTraitement.inDays} jours"),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 4, 8, 8),
+            child: Text("${medic.denomination}"),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    double witdh = MediaQuery.of(context).size.width/3.47;
-    double height = MediaQuery.of(context).size.height/1.6;
+    double witdh = MediaQuery.of(context).size.width / 3.47;
+    double height = MediaQuery.of(context).size.height / 1.55;
     return Form(
+      key: _globalFormKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 50, 0, 4),
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 4),
             child: const Text(
               "Prescrire une ordonnance",
               style: TextStyle(
@@ -40,7 +90,8 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
             child: Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 75),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 75),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -59,7 +110,7 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  top: 25.0,
+                                  top: 15,
                                   bottom: 15,
                                 ),
                                 child: Text(
@@ -77,7 +128,8 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                                 titleField: "Nom",
                               ),
                               WebSingleFormField(
-                                controller: _prenom, hint: "Louis",
+                                controller: _prenom,
+                                hint: "Louis",
                                 titleField: "Prénom",
                               ),
                               WebSingleFormField(
@@ -99,57 +151,148 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: SingleChildScrollView(
+                        child: _qr_code_print
+                            ? _qr_image
+                            : SingleChildScrollView(
                           controller: ScrollController(),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 25.0,
-                                  bottom: 15,
-                                ),
-                                child: Text(
-                                  "Médicaments",
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                          child: Form(
+                            key: _medicsFormKey,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 15,
+                                    bottom: 15,
                                   ),
-                                ),
-                              ),
-                              WebSingleFormField(
-                                controller: _medicament,
-                                hint: "Nom médicament",
-                                titleField: "Médicaments",
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-                                child: Container(
-                                  color: Colors.white,
-                                  child: SpinBox(
-                                    incrementIcon: Icon(Icons.arrow_forward_rounded),
-                                    decrementIcon: Icon(Icons.arrow_back_rounded),
-                                    min: 0,
-                                    max: 10,
-                                    value: 0,
-                                    spacing: 1,
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
+                                  child: Text(
+                                    "Médicaments",
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                              ),
-                              WebSingleFormField(
-                                controller: _reference,
-                                hint: "MTE NR QCP AR",
-                                titleField: "Référence",
-                              ),
-                              WebSingleFormField(
-                                controller: _consignes,
-                                hint: "Prise au matin et au soir",
-                                titleField: "Consignes",
-                              ),
-                            ],
+                                WebSingleFormField(
+                                  controller: _medicament,
+                                  hint: "Nom médicament",
+                                  titleField: "Médicaments",
+                                ),
+                                WebIntSpinFormField(
+                                  title: "Fois par jour",
+                                  minValue: 0,
+                                  maxValue: 10,
+                                  changeState: (value) {
+                                    setState(() {
+                                      fois = value;
+                                    });
+                                  },
+                                ),
+                                WebIntSpinFormField(
+                                  title: "Pendant X jours",
+                                  minValue: 0,
+                                  maxValue: 30,
+                                  changeState: (value) {
+                                    setState(() {
+                                      duree = value;
+                                    });
+                                  },
+                                ),
+                                WebSingleFormField(
+                                  controller: _reference,
+                                  hint: "MTE NR QCP AR",
+                                  titleField: "Référence",
+                                ),
+                                WebIntSpinFormField(
+                                  title: "Renouvellement",
+                                  minValue: 0,
+                                  maxValue: 11,
+                                  changeState: (value) {
+                                    setState(() {
+                                      renouvellement = value;
+                                    });
+                                  },
+                                ),
+                                WebSingleFormField(
+                                  controller: _consignes,
+                                  hint: "Prise pendant les repas",
+                                  titleField: "Consignes",
+                                ),
+                                WebCheckBoxFieldForm(
+                                  matinValue: (value) {
+                                    if (matin != value) {
+                                      if (matin)
+                                        checked--;
+                                      else
+                                        checked++;
+                                    }
+                                    setState(() {
+                                      matin = value;
+                                    });
+                                  },
+                                  midiValue: (value) {
+                                    if (midi != value) {
+                                      if (midi)
+                                        checked--;
+                                      else
+                                        checked++;
+                                    }
+                                    setState(() {
+                                      midi = value;
+                                    });
+                                  },
+                                  soirValue: (value) {
+                                    if (soir != value) {
+                                      if (soir)
+                                        checked--;
+                                      else
+                                        checked++;
+                                    }
+                                    setState(() {
+                                      soir = value;
+                                    });
+                                  },
+                                ),
+                                WebAdderFormField(
+                                  buttonFunction: fois != checked
+                                      ? null
+                                      : () {
+                                          if (_medicsFormKey.currentState!
+                                              .validate()) {
+                                            Medicament med = Medicament(
+                                              cis: 0,
+                                              denomination:
+                                                  _reference.value.text,
+                                              nom: _medicament.value.text,
+                                              detail: _consignes.value.text,
+                                              nombre: renouvellement.toInt(),
+                                              dureeTraitement:
+                                                  Duration(days: duree.toInt()),
+                                              priseParJour: fois.toInt(),
+                                            );
+                                            if (matin)
+                                              med.addMomentPrise(
+                                                  MomentPrise.Matin);
+                                            if (midi)
+                                              med.addMomentPrise(
+                                                  MomentPrise.Midi);
+                                            if (soir)
+                                              med.addMomentPrise(
+                                                  MomentPrise.Soir);
+                                            setState(() {
+                                              _recapMedicList.add(_meds(med));
+                                              _consignes.text = '';
+                                              _reference.text = '';
+                                              _medicament.text = '';
+                                              _medsList.add(med);
+                                              print('hello');
+                                            });
+                                          }
+                                        },
+                                  titleField: "Ajouter un médicament",
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -164,40 +307,43 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: SingleChildScrollView(
-                          controller: ScrollController(),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 25.0,
-                                  bottom: 15,
+                                controller: ScrollController(),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 15.0,
+                                        bottom: 15,
+                                      ),
+                                      child: Text(
+                                        "Récapitulatif",
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: witdh - 75,
+                                      height: height - 100,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.shade50,
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                      child: ListView.builder(
+                                        itemCount: _recapMedicList.length,
+                                        itemBuilder: (context, index) {
+                                          return _recapMedicList[index];
+                                        },
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                child: Text(
-                                  "Informations Patient",
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
                               ),
-                              WebSingleFormField(
-                                controller: _nom,
-                                hint: "Roux",
-                                titleField: "Nom",
-                              ),
-                              WebSingleFormField(
-                                controller: _prenom, hint: "Louis",
-                                titleField: "Prénom",
-                              ),
-                              WebSingleFormField(
-                                controller: _secusociale,
-                                hint: "1 90 12 44 113 492",
-                                titleField: "Numéro de sécurité sociale",
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                     ),
                   ],
@@ -205,6 +351,30 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
               ),
             ),
           ),
+          WebButtonForm(
+            buttonText: "Générer Ordonnance",
+            onTap: _qr_code_print ? null : () {
+              if (!_globalFormKey.currentState!.validate()) return;
+              _patient = Patient(
+                  nom: _nom.value.text,
+                  prenom: _prenom.value.text,
+                  numSS: _secusociale.value.text);
+              int hash = hashValues(_patient, hashList(_medsList));
+              Ordonnance ordonnance = Ordonnance(
+                  patient: _patient, medicaments: _medsList, hash: hash);
+              print(jsonEncode(ordonnance));
+              String json = jsonEncode(ordonnance);
+              setState(
+                () {
+                  _qr_image = QrImage(
+                    data: json,
+                    version: QrVersions.auto,
+                  );
+                  _qr_code_print = true;
+                },
+              );
+            },
+          )
         ],
       ),
     );

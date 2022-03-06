@@ -16,7 +16,7 @@ class Docteur extends Personne {
       required this.specialite,
       required this.adresse,
       required this.unique_rpps})
-      : super(id, nom, prenom, civilite);
+      : super(nom, prenom);
 
   bool exerciceAuthorized() {
     // TODO: implement exerciceAuthorized
@@ -26,15 +26,13 @@ class Docteur extends Personne {
   @override
   bool operator ==(oth) =>
       oth is Docteur &&
-      id == oth.id &&
       nom == oth.nom &&
       prenom == oth.prenom &&
-      civilite == oth.civilite &&
       specialite == oth.specialite &&
       adresse == oth.adresse &&
       unique_rpps == oth.unique_rpps;
 
   @override
-  int get hashCode => hashValues(id, nom, prenom, civilite.toShortString(),
+  int get hashCode => hashValues(nom, prenom,
       specialite, adresse, unique_rpps);
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class WebButtonForm extends StatefulWidget {
   final String buttonText;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   const WebButtonForm({Key? key, required this.buttonText, required this.onTap}) : super(key: key);
 
   @override
