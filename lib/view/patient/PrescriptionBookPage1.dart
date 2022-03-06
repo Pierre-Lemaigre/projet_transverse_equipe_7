@@ -17,11 +17,15 @@ class PrescriptionBookPage1 extends StatefulWidget {
   _PrescriptionBookPage createState() => _PrescriptionBookPage();
 }
   List<Fiche> TestPrescriptions=[
-    Fiche(Patient(id: 13, nom: "Smith", prenom: "Jonh", civilite: Civilite.Monsieur, lieuNaissance: "France", dateNaissance: DateTime.utc(1989, 11, 9), adresse: Adresse(rue: "hanz", codePostal: 94230, ville: "ville"), numSS: "1978686897"), Medicament(cis: 159, denomination: "Paracematamol", detail: "1", priseParJour: 1, nombre: 2, dureeTraitement: Duration(days: 23))),
+    Fiche(Patient(id: 13, nom: "Smith", prenom: "Jonh", civilite: Civilite.Monsieur, lieuNaissance: "France", dateNaissance: DateTime.utc(1989, 11, 9), adresse: Adresse(rue: "hanz", codePostal: 94230, ville: "ville"), numSS: "1978686897"), Medicament(cis: 159, denomination: "Parace", detail: "1", priseParJour: 1, nombre: 2, dureeTraitement: Duration(days: 23))),
     Fiche(Patient(id: 1, nom: "Smith", prenom: "Jonh", civilite: Civilite.Monsieur, lieuNaissance: "France", dateNaissance: DateTime.utc(1989, 11, 9), adresse: Adresse(rue: "hanz", codePostal: 94230, ville: "ville"), numSS: "6768798"), Medicament(cis: 159, denomination: "Doly", detail: "2", priseParJour: 1, nombre: 2, dureeTraitement: Duration(days: 30))),
     Fiche(Patient(id: 2, nom: "Smith", prenom: "Jonh", civilite: Civilite.Monsieur, lieuNaissance: "France", dateNaissance: DateTime.utc(2000, 11, 9), adresse: Adresse(rue: "hanz", codePostal: 94230, ville: "ville"), numSS: "208997865"), Medicament(cis: 159, denomination: "Viagra", detail: "3", priseParJour: 1, nombre: 2, dureeTraitement: Duration(days: 15))),
 
   ];
+List<Fiche> TestPrescription=[
+  Fiche(Patient(id: 13, nom: "Smith", prenom: "Jonh", civilite: Civilite.Monsieur, lieuNaissance: "France", dateNaissance: DateTime.utc(1989, 11, 9), adresse: Adresse(rue: "hanz", codePostal: 94230, ville: "ville"), numSS: "2867789778"), Medicament(cis: 159, denomination: "Parazite", detail: "Grave", priseParJour: 1, nombre: 2, dureeTraitement: Duration(days: 23))),
+
+];
 
 
 class _PrescriptionBookPage extends State<PrescriptionBookPage1> with TickerProviderStateMixin {
@@ -69,8 +73,8 @@ class _PrescriptionBookPage extends State<PrescriptionBookPage1> with TickerProv
                   itemCount: TestPrescriptions.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (BuildContext context, int index) {
-                    return FavoriteCard(
-                      prescription: prescription,
+                    return Favorite(
+                      fiche: TestPrescriptions[index],
                       cardColor: Colors.grey[200],
                       icon: Icons.favorite_border,
                       secondIcon: Icons.archive,
@@ -79,11 +83,11 @@ class _PrescriptionBookPage extends State<PrescriptionBookPage1> with TickerProv
                   }
                 ),
                 ListView.builder(
-                    itemCount: TestPrescriptions.length,
+                    itemCount: TestPrescription.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
                       return Favorite(
-                        fiche: TestPrescriptions[index],
+                        fiche: TestPrescription[index],
                         cardColor: Colors.grey[200],
                         icon: Icons.error,
                         secondIcon: Icons.unarchive,
