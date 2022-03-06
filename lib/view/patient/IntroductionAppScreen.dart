@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:projet_transverse_equipe_7/view/patient/MainLoginPage.dart';
 
 class IntroductionAppScreen extends StatefulWidget {
   @override
@@ -44,9 +43,7 @@ class _IntroductionAppScreen extends State<IntroductionAppScreen> {
             "Done",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
-          onDone: () {
-            LoginPageState();
-          },
+          onDone: () {},
           onSkip: () {},
           dotsDecorator: DotsDecorator(
               size: const Size.square(10.0),

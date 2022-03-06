@@ -1,18 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.hsociety.projet_transverse_equipe_7">
-    
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
-    <application
-        android:label="OrdonnanceDash"
+   <application
+        android:label="projet_transverse_equipe_7"
         android:icon="@mipmap/launcher_icon">
-
-       <meta-data
-           android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyCdAd5UE-L0CC_53t0ZG4PQUN4FP3ZvxHA"
-           />
-
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,8 +27,6 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
