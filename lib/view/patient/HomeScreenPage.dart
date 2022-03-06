@@ -5,6 +5,7 @@ import 'package:projet_transverse_equipe_7/Widgets/ExtendedFab.dart';
 import 'package:projet_transverse_equipe_7/Widgets/SimpleFab.dart';
 import 'package:projet_transverse_equipe_7/view/patient/MyTreatmentPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage.dart';
+import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage1.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
 
 class HomeScreenPage extends StatefulWidget {
@@ -162,7 +163,7 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                           onTap: () {
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => PrescriptionBookPage())
+                                MaterialPageRoute(builder: (context) => PrescriptionBookPage1())
                             );
                           },
                           child: Row(
