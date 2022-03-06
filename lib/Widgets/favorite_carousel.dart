@@ -5,7 +5,6 @@ import 'favorite_card.dart';
 
 class FavoriteCarousel extends StatelessWidget {
   Prescription prescription = new Prescription(
-    1,
     'Consultation Allergologie',
     'Dr Jean Philippe',
     '15/09/2021',

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_transverse_equipe_7/Widgets/return_page_header.dart';
 import 'package:projet_transverse_equipe_7/view/patient/HomeScreenPage.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-import 'dart:convert';
+
 import 'dart:math' as math;
 
 class PrescriptionMainPage extends StatefulWidget {
@@ -14,18 +11,10 @@ class PrescriptionMainPage extends StatefulWidget {
 
 class _PrescriptionMainPageState extends State<PrescriptionMainPage> {
   late bool _displayPatientInfos;
-  late int _idPrescription;
-  late String _prescriptionContent = "";
-  late String _prescription = "";
 
   @override
   void initState() {
     this._displayPatientInfos = false;
-    this._idPrescription = 0;
-    Future<String> s = ReadPrescription(this._idPrescription.toString());
-    _prescription = jsonDecode(_prescriptionContent);
-    print("presc: " + _prescription);
-
     super.initState();
   }
 
@@ -144,7 +133,7 @@ class _PrescriptionMainPageState extends State<PrescriptionMainPage> {
                             'Monsieur LEMAIGRE Pierre\n' +
                                 '16 ans 73 kg\n' +
                                 'né le 16/05/2005 à New Delhi\n' +
-                                '_prescription[0]',
+                                '10505238274',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -419,20 +408,4 @@ class _PrescriptionMainPageState extends State<PrescriptionMainPage> {
       ),
     );
   }
-    Future<String> ReadPrescription(String id_prescription) async {
-      String text = "";
-      try {
-        final Directory directory = await getApplicationDocumentsDirectory();
-        final File file = File('${directory.path}/${id_prescription}.json');
-        text = await file.readAsString();
-      } catch (e) {
-        print("Couldn't read file");
-      }
-      this._prescriptionContent = text;
-      //print("fonction: text:" + text);
-      //print("fonction: file_content:" + file_content);
-      return text;
-
-
-}
 }
