@@ -1,5 +1,6 @@
 
 class Prescription {
+
   String title;
   String doc_name;
   String scan_date;
