@@ -5,7 +5,6 @@ import 'package:projet_transverse_equipe_7/Widgets/ExtendedFab.dart';
 import 'package:projet_transverse_equipe_7/Widgets/SimpleFab.dart';
 import 'package:projet_transverse_equipe_7/view/patient/MyTreatmentPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage.dart';
-import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage1.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/current_location.dart';
 import 'package:projet_transverse_equipe_7/view/patient/current_location.dart';
@@ -166,7 +165,7 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                           onTap: () {
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => PrescriptionBookPage1())
+                                MaterialPageRoute(builder: (context) => PrescriptionBookPage())
                             );
                           },
                           child: Row(
