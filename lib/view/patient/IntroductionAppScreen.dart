@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:projet_transverse_equipe_7/view/patient/MainLoginPage.dart';
 
+import 'HomeScreenPage.dart';
+
 class IntroductionAppScreen extends StatefulWidget {
   @override
   _IntroductionAppScreen createState() => _IntroductionAppScreen();
@@ -44,10 +46,14 @@ class _IntroductionAppScreen extends State<IntroductionAppScreen> {
             "Done",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
-          onDone: () {
-            LoginPageState();
-          },
-          onSkip: () {},
+          onDone: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreenPage())
+          ),
+          onSkip: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreenPage())
+          ),
           dotsDecorator: DotsDecorator(
               size: const Size.square(10.0),
               activeSize: const Size(20.0, 10.0),
