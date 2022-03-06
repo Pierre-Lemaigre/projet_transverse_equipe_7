@@ -6,6 +6,9 @@ import 'package:projet_transverse_equipe_7/Widgets/SimpleFab.dart';
 import 'package:projet_transverse_equipe_7/view/patient/MyTreatmentPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionBookPage.dart';
 import 'package:projet_transverse_equipe_7/view/patient/PrescriptionMainPage.dart';
+import 'package:projet_transverse_equipe_7/view/patient/current_location.dart';
+import 'package:projet_transverse_equipe_7/view/patient/current_location.dart';
+
 
 class HomeScreenPage extends StatefulWidget {
   @override
@@ -284,7 +287,12 @@ class _HomeScreenPage extends State<HomeScreenPage> {
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>CurrentLocationScreen())
+                            );
+                          },
                           child: Row(
                               children: <Widget>[
                                 Padding(
