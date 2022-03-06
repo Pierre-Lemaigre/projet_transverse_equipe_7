@@ -5,7 +5,3 @@ extension ParseToString on MomentPrise {
     return this.toString().split('.').last;
   }
 }
-
-extension toJson on MomentPrise {
-  
-}

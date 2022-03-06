@@ -35,9 +35,7 @@ class _PrescriptionPageState extends State<PrescriptionPage> {
               alignment: Alignment.topLeft,
               child: TitleApp(),
             ),
-            Container(
-              height: height / 1.3,
-              width: width,
+            Expanded(
               child: PrescriptionForm(),
             )
           ],

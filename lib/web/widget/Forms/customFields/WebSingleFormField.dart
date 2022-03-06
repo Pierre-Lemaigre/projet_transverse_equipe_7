@@ -35,12 +35,6 @@ class _WebSingleFormFieldState extends State<WebSingleFormField> {
           ),
         ),
         TextFormField(
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter some Text';
-            }
-            return null;
-          },
           controller: controller,
           decoration: InputDecoration(
             border:
