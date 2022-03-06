@@ -5,11 +5,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_transverse_equipe_7/model/helper/momentprise.dart';
 import 'package:projet_transverse_equipe_7/model/medicament.dart';
+import 'package:projet_transverse_equipe_7/model/ordonnance.dart';
 import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebAdderFormField.dart';
 import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebButtonForm.dart';
 import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebCheckBoxFieldForm.dart';
 import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebIntSpinFormField.dart';
 import 'package:projet_transverse_equipe_7/web/widget/Forms/customFields/WebSingleFormField.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+
+import '../../../model/patient.dart';
 
 class PrescriptionForm extends StatefulWidget {
   const PrescriptionForm({Key? key}) : super(key: key);
@@ -27,8 +31,11 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
   final _reference = TextEditingController();
   final _consignes = TextEditingController();
   final _medicsFormKey = GlobalKey<FormState>();
+  bool _qr_code_print = false;
+  late QrImage _qr_image;
   List<Widget> _recapMedicList = [];
   List<Medicament> _medsList = [];
+  late Patient _patient;
   double fois = 0;
   double duree = 0;
   double renouvellement = 0;
@@ -144,7 +151,9 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: SingleChildScrollView(
+                        child: _qr_code_print
+                            ? _qr_image
+                            : SingleChildScrollView(
                           controller: ScrollController(),
                           child: Form(
                             key: _medicsFormKey,
@@ -298,43 +307,43 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: SingleChildScrollView(
-                          controller: ScrollController(),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 15.0,
-                                  bottom: 15,
-                                ),
-                                child: Text(
-                                  "Récapitulatif",
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                controller: ScrollController(),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 15.0,
+                                        bottom: 15,
+                                      ),
+                                      child: Text(
+                                        "Récapitulatif",
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: witdh - 75,
+                                      height: height - 100,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.shade50,
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                      child: ListView.builder(
+                                        itemCount: _recapMedicList.length,
+                                        itemBuilder: (context, index) {
+                                          return _recapMedicList[index];
+                                        },
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Container(
-                                width: witdh - 75,
-                                height: height - 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade50,
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                                child: ListView.builder(
-                                  itemCount: _recapMedicList.length,
-                                  itemBuilder: (context, index) {
-                                    return _recapMedicList[index];
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                     ),
                   ],
@@ -344,8 +353,26 @@ class _PrescriptionFormState extends State<PrescriptionForm> {
           ),
           WebButtonForm(
             buttonText: "Générer Ordonnance",
-            onTap: () {
-              print(jsonEncode(_medsList.first.momentPrise));
+            onTap: _qr_code_print ? null : () {
+              if (!_globalFormKey.currentState!.validate()) return;
+              _patient = Patient(
+                  nom: _nom.value.text,
+                  prenom: _prenom.value.text,
+                  numSS: _secusociale.value.text);
+              int hash = hashValues(_patient, hashList(_medsList));
+              Ordonnance ordonnance = Ordonnance(
+                  patient: _patient, medicaments: _medsList, hash: hash);
+              print(jsonEncode(ordonnance));
+              String json = jsonEncode(ordonnance);
+              setState(
+                () {
+                  _qr_image = QrImage(
+                    data: json,
+                    version: QrVersions.auto,
+                  );
+                  _qr_code_print = true;
+                },
+              );
             },
           )
         ],

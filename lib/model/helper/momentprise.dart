@@ -7,5 +7,5 @@ extension ParseToString on MomentPrise {
 }
 
 extension toJson on MomentPrise {
-
+  
 }

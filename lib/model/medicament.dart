@@ -59,6 +59,6 @@ class Medicament {
     'renouvellement': nombre,
     'duree': dureeTraitement.inDays,
     'prise_jour': priseParJour,
-    'moment_prise': jsonEncode(momentPrise)
+    'moment_prise': jsonEncode(momentPrise.map((e) => e.toShortString()).toList())
   };
 }
