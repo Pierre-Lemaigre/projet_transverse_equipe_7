@@ -16,6 +16,7 @@ class _PrescriptionBookPage extends State<PrescriptionBookPage> with TickerProvi
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 2, vsync: this);
     Prescription prescription = new Prescription(
+      1,
         'Consultation Allergologie',
         'Dr Jean Philippe',
         '15/09/2021',
